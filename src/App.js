@@ -9,10 +9,13 @@ import Login from "./components/Login/Login";
 import Blogs from "./components/Blogs/Blogs";
 import About from "./components/About/About";
 import NotFound from "./components/NotFound/NotFound";
+import Navbar from "./components/Home/Navbar/Navbar";
 
 function App() {
   return (
     <div className="App">
+      <Navbar></Navbar>
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/inventory" element={<Inventory />} />
