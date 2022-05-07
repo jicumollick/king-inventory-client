@@ -4,18 +4,21 @@ import { StarIcon } from "@heroicons/react/solid";
 const Reviews = () => {
   const users = [
     {
+      id: 1,
       name: "jicu Mollick",
       img: "https://randomuser.me/api/portraits/thumb/men/75.jpg",
       comment: "An absolute application for my company.",
       identity: "CEO, Nelson Bngladesh",
     },
     {
+      id: 2,
       name: "Samanta Gomez",
       img: "https://randomuser.me/api/portraits/thumb/women/75.jpg",
       comment: "Unique feture with regular update. loved it",
       identity: "Technician, Europa bebaraz",
     },
     {
+      id: 3,
       name: "Andre Simon",
       img: "https://randomuser.me/api/portraits/thumb/men/25.jpg",
       comment: "An up to date software we are using since 2015",
@@ -29,6 +32,7 @@ const Reviews = () => {
         {users.map((customer) => {
           return (
             <div
+              key={customer.id}
               className="card "
               style={{
                 width: "23rem",
