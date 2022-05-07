@@ -1,0 +1,24 @@
+
+.reviews {
+    background-color: lightblue;
+}
+/* laptop and computer  */
+@media only screen and (min-width: 992px) {
+
+    .cards-container {
+        margin-top: 50px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 40px 40px;
+        padding-left: 50px;
+    }
+}
+
+
+/* for nmobile devices  */
+@media only screen and (max-width: 600px) {
+    .card{
+        margin: 20px 0px;
+    }
+
+}
