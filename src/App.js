@@ -12,6 +12,7 @@ import NotFound from "./components/NotFound/NotFound";
 import Navbar from "./components/Home/Navbar/Navbar";
 import Footer from "./components/Home/Footer/Footer";
 import RequireAuth from "./components/RequireAuth/RequireAuth";
+import InventoryUpdate from "./components/InventoryUpdate/InventoryUpdate";
 
 function App() {
   return (
@@ -42,6 +43,14 @@ function App() {
           element={
             <RequireAuth>
               <MyItems />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/inventory/:id"
+          element={
+            <RequireAuth>
+              <InventoryUpdate />
             </RequireAuth>
           }
         />

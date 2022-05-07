@@ -42,7 +42,7 @@ const ManageItems = () => {
         </button>
       </div>
 
-      <div className="container">
+      <div className="container pb-5">
         <div className="row gy-3 ">
           {products.map((product) => {
             return (

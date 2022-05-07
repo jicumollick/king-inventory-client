@@ -1,67 +1,50 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
+import useProducts from "../../../hooks/useProducts";
+import "./PopularItems.css";
 const PopularItems = () => {
+  const [products, setProducts] = useProducts([]);
+  const popularProducts = products.slice(0, 6);
   return (
     <div>
       <h1 className="primary-color pb-lg-5 pb-sm-3">Popular Items</h1>
 
-      <div>
+      <div className="pb-5">
         <div className="container">
-          <div className="row">
-            <div className=" col-md-4 col-sm-12 ">
-              <div
-                className="card "
-                style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}
-              >
-                <img src="..." className="card-img-top img-fluid" alt="..." />
-                <div className="card-body">
-                  <h5 className="card-title">Name</h5>
-                  <p className="card-text">Short description</p>
-                  <p className="card-text">price</p>
-                  <p className="card-text">quantity</p>
-                  <p className="card-text">Supplier</p>
-                  <a href="/" className="btn btn-primary">
-                    Update Stock
-                  </a>
+          <div className="row gy-3">
+            {popularProducts.map((product) => {
+              return (
+                <div key={product._id} className=" col-md-4 col-sm-12 ">
+                  <div
+                    className="card "
+                    style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}
+                  >
+                    <img
+                      src={product.image}
+                      className="card-img-top img-fluid img-responsive"
+                      alt="..."
+                    />
+                    <div className="card-body">
+                      <h5 className="card-title">Name: {product.name}</h5>
+                      <p className="card-text">
+                        Short description: {product.description}{" "}
+                      </p>
+                      <p className="card-text">price: ${product.price}</p>
+                      <p className="card-text">quantity: {product.quantity}</p>
+                      <p className="card-text">
+                        Supplier: {product.supplierName}
+                      </p>
+                      <Link
+                        to={`inventory/${product._id}`}
+                        className="btn btn-primary"
+                      >
+                        Update Stock
+                      </Link>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div className=" col-md-4 col-sm-12 ">
-              <div
-                className="card "
-                style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}
-              >
-                <img src="..." className="card-img-top img-fluid" alt="..." />
-                <div className="card-body">
-                  <h5 className="card-title">Name</h5>
-                  <p className="card-text">Short description</p>
-                  <p className="card-text">price</p>
-                  <p className="card-text">quantity</p>
-                  <p className="card-text">Supplier</p>
-                  <a href="/" className="btn btn-primary">
-                    Update Stock
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className=" col-md-4 col-sm-12 ">
-              <div
-                className="card "
-                style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}
-              >
-                <img src="..." className="card-img-top img-fluid" alt="..." />
-                <div className="card-body">
-                  <h5 className="card-title">Name</h5>
-                  <p className="card-text">Short description</p>
-                  <p className="card-text">price</p>
-                  <p className="card-text">quantity</p>
-                  <p className="card-text">Supplier</p>
-                  <a href="/" className="btn btn-primary">
-                    Update Stock
-                  </a>
-                </div>
-              </div>
-            </div>
+              );
+            })}
           </div>
         </div>
       </div>

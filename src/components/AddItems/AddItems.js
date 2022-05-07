@@ -1,7 +1,10 @@
-import { jsonEval } from "@firebase/util";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../firebase.init";
 
 const AddItems = () => {
+  const [user, loading, error] = useAuthState(auth);
+  // console.log(user);
   const handleSubmit = (e) => {
     e.preventDefault();
     const name = e.target.name.value;
@@ -49,7 +52,12 @@ const AddItems = () => {
           </div>
           <div className="form-group">
             <label htmlFor="email">Your Email</label>
-            <input type="email" className="form-control" id="email" />
+            <input
+              type="email"
+              className="form-control"
+              id="email"
+              defaultValue={user.email || ""}
+            />
           </div>
           <div className="form-group">
             <label htmlFor="image">Image URL</label>
