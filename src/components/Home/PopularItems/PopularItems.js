@@ -10,17 +10,17 @@ const PopularItems = () => {
           <div className="row">
             <div className=" col-md-4 col-sm-12 ">
               <div
-                class="card "
+                className="card "
                 style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}
               >
-                <img src="..." class="card-img-top img-fluid" alt="..." />
-                <div class="card-body">
-                  <h5 class="card-title">Name</h5>
-                  <p class="card-text">Short description</p>
-                  <p class="card-text">price</p>
-                  <p class="card-text">quantity</p>
-                  <p class="card-text">Supplier</p>
-                  <a href="/" class="btn btn-primary">
+                <img src="..." className="card-img-top img-fluid" alt="..." />
+                <div className="card-body">
+                  <h5 className="card-title">Name</h5>
+                  <p className="card-text">Short description</p>
+                  <p className="card-text">price</p>
+                  <p className="card-text">quantity</p>
+                  <p className="card-text">Supplier</p>
+                  <a href="/" className="btn btn-primary">
                     Update Stock
                   </a>
                 </div>
@@ -28,17 +28,17 @@ const PopularItems = () => {
             </div>
             <div className=" col-md-4 col-sm-12 ">
               <div
-                class="card "
+                className="card "
                 style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}
               >
-                <img src="..." class="card-img-top img-fluid" alt="..." />
-                <div class="card-body">
-                  <h5 class="card-title">Name</h5>
-                  <p class="card-text">Short description</p>
-                  <p class="card-text">price</p>
-                  <p class="card-text">quantity</p>
-                  <p class="card-text">Supplier</p>
-                  <a href="/" class="btn btn-primary">
+                <img src="..." className="card-img-top img-fluid" alt="..." />
+                <div className="card-body">
+                  <h5 className="card-title">Name</h5>
+                  <p className="card-text">Short description</p>
+                  <p className="card-text">price</p>
+                  <p className="card-text">quantity</p>
+                  <p className="card-text">Supplier</p>
+                  <a href="/" className="btn btn-primary">
                     Update Stock
                   </a>
                 </div>
@@ -46,17 +46,17 @@ const PopularItems = () => {
             </div>
             <div className=" col-md-4 col-sm-12 ">
               <div
-                class="card "
+                className="card "
                 style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}
               >
-                <img src="..." class="card-img-top img-fluid" alt="..." />
-                <div class="card-body">
-                  <h5 class="card-title">Name</h5>
-                  <p class="card-text">Short description</p>
-                  <p class="card-text">price</p>
-                  <p class="card-text">quantity</p>
-                  <p class="card-text">Supplier</p>
-                  <a href="/" class="btn btn-primary">
+                <img src="..." className="card-img-top img-fluid" alt="..." />
+                <div className="card-body">
+                  <h5 className="card-title">Name</h5>
+                  <p className="card-text">Short description</p>
+                  <p className="card-text">price</p>
+                  <p className="card-text">quantity</p>
+                  <p className="card-text">Supplier</p>
+                  <a href="/" className="btn btn-primary">
                     Update Stock
                   </a>
                 </div>

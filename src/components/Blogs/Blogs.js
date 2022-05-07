@@ -2,11 +2,11 @@ import React from "react";
 
 const Blogs = () => {
   return (
-    <div class="accordion" id="accordionExample">
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingOne">
+    <div className="accordion" id="accordionExample">
+      <div className="accordion-item">
+        <h2 className="accordion-header" id="headingOne">
           <button
-            class="accordion-button"
+            className="accordion-button"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#collapseOne"
@@ -18,11 +18,11 @@ const Blogs = () => {
         </h2>
         <div
           id="collapseOne"
-          class="accordion-collapse collapse show"
+          className="accordion-collapse collapse show"
           aria-labelledby="headingOne"
           data-bs-parent="#accordionExample"
         >
-          <div class="accordion-body">
+          <div className="accordion-body">
             <p>
               Javascript is a <strong> pragramming language</strong> but Node js
               is a <strong> runtime environment </strong> for javacript.
@@ -37,10 +37,10 @@ const Blogs = () => {
           </div>
         </div>
       </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingTwo">
+      <div className="accordion-item">
+        <h2 className="accordion-header" id="headingTwo">
           <button
-            class="accordion-button collapsed"
+            className="accordion-button collapsed"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#collapseTwo"
@@ -52,11 +52,11 @@ const Blogs = () => {
         </h2>
         <div
           id="collapseTwo"
-          class="accordion-collapse collapse"
+          className="accordion-collapse collapse"
           aria-labelledby="headingTwo"
           data-bs-parent="#accordionExample"
         >
-          <div class="accordion-body">
+          <div className="accordion-body">
             <p>
               there is many aspects to use node js .{" "}
               <strong>
@@ -83,10 +83,10 @@ const Blogs = () => {
           </div>
         </div>
       </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingThree">
+      <div className="accordion-item">
+        <h2 className="accordion-header" id="headingThree">
           <button
-            class="accordion-button collapsed"
+            className="accordion-button collapsed"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#collapseThree"
@@ -98,11 +98,11 @@ const Blogs = () => {
         </h2>
         <div
           id="collapseThree"
-          class="accordion-collapse collapse"
+          className="accordion-collapse collapse"
           aria-labelledby="headingThree"
           data-bs-parent="#accordionExample"
         >
-          <div class="accordion-body">
+          <div className="accordion-body">
             <p>
               Sql is <strong>relational database management system. </strong>{" "}
               Nosql is{" "}
@@ -117,10 +117,10 @@ const Blogs = () => {
           </div>
         </div>
       </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingThree">
+      <div className="accordion-item">
+        <h2 className="accordion-header" id="headingThree">
           <button
-            class="accordion-button collapsed"
+            className="accordion-button collapsed"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#collapseFour"
@@ -132,11 +132,11 @@ const Blogs = () => {
         </h2>
         <div
           id="collapseFour"
-          class="accordion-collapse collapse"
+          className="accordion-collapse collapse"
           aria-labelledby="headingThree"
           data-bs-parent="#accordionExample"
         >
-          <div class="accordion-body">
+          <div className="accordion-body">
             <p>
               We use jwt to implement a{" "}
               <strong> secure authentication system. </strong>
