@@ -11,6 +11,7 @@ import About from "./components/About/About";
 import NotFound from "./components/NotFound/NotFound";
 import Navbar from "./components/Home/Navbar/Navbar";
 import Footer from "./components/Home/Footer/Footer";
+import RequireAuth from "./components/RequireAuth/RequireAuth";
 
 function App() {
   return (
@@ -20,9 +21,30 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/inventory" element={<Inventory />} />
-        <Route path="/manageItems" element={<ManageItems />} />
-        <Route path="/addItems" element={<AddItems />} />
-        <Route path="/myItems" element={<MyItems />} />
+        <Route
+          path="/manageItems"
+          element={
+            <RequireAuth>
+              <ManageItems />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/addItems"
+          element={
+            <RequireAuth>
+              <AddItems />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/myItems"
+          element={
+            <RequireAuth>
+              <MyItems />
+            </RequireAuth>
+          }
+        />
         <Route path="/login" element={<Login />} />
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/about" element={<About />} />
