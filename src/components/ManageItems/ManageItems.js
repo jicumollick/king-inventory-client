@@ -10,6 +10,26 @@ const ManageItems = () => {
   const handleAddProduct = () => {
     navigate("/addItems");
   };
+
+  const handleProductDelete = (id) => {
+    const procced = window.confirm("Are you sure to delete ?");
+    if (procced) {
+      console.log(id);
+      const url = `http://localhost:5000/products/${id}`;
+
+      fetch(url, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.deletedCount > 0) {
+            console.log("delete succesfully");
+            const remaining = products.filter((product) => product._id !== id);
+            setProducts(remaining);
+          }
+        });
+    }
+  };
   return (
     <div className="">
       <h2 className="my-5">Manage Items</h2>
@@ -26,7 +46,7 @@ const ManageItems = () => {
         <div className="row gy-3 ">
           {products.map((product) => {
             return (
-              <div className=" col-sm-12 col-md-4  ">
+              <div key={product._id} className=" col-sm-12 col-md-4  ">
                 <div
                   className="card "
                   style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}
@@ -44,9 +64,12 @@ const ManageItems = () => {
                     <p className="card-text">price: ${product.price}</p>
                     <p className="card-text">quantity: {product.quantity}</p>
                     <p className="card-text">Supplier: {product.supplier} </p>
-                    <a href="/" className="btn btn-primary">
-                      Update Stock
-                    </a>
+                    <button
+                      className="btn btn-primary"
+                      onClick={() => handleProductDelete(product._id)}
+                    >
+                      Delete
+                    </button>
                   </div>
                 </div>
               </div>
