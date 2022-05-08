@@ -1,25 +1,34 @@
 import React, { useState } from "react";
 import { sendEmailVerification, sendPasswordResetEmail } from "firebase/auth";
 import "./Login.css";
-import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import {
+  useAuthState,
+  useCreateUserWithEmailAndPassword,
+} from "react-firebase-hooks/auth";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "../firebase.init";
-
+import { useNavigate } from "react-router-dom";
 import SocialLogin from "./SocialLogin/SocialLogin";
-
+import { async } from "@firebase/util";
 import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 
 const Login = () => {
-  let errorMessage;
+  const [user, loading, error] = useAuthState(auth);
 
+  let errorMessage;
+  const navigate = useNavigate();
   // getting user
   const [registered, setRegistered] = useState(false);
   // for sign up
-  const [createUserWithEmailAndPassword, signUpUser, signUpError] =
-    useCreateUserWithEmailAndPassword(auth);
+  const [
+    createUserWithEmailAndPassword,
+    signUpUser,
+    signUpLoading,
+    signUpError,
+  ] = useCreateUserWithEmailAndPassword(auth);
   // for login
-  const [signInWithEmailAndPassword, loading2, error2] =
+  const [signInWithEmailAndPassword, user2, loading2, error2] =
     useSignInWithEmailAndPassword(auth);
 
   if (loading2) {
