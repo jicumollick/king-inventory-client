@@ -26,8 +26,8 @@ const Reviews = () => {
     },
   ];
   return (
-    <div className="reviews pb-5">
-      <h2 className="py-5">What Our Customer Says</h2>
+    <div className="reviews py-5 ">
+      <h2 className="pb-5">What Our Customer Says</h2>
       <div className="cards-container">
         {users.map((customer) => {
           return (

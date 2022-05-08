@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useProducts from "../../../hooks/useProducts";
 import "./PopularItems.css";
 const PopularItems = () => {
+  const [isLoading] = useState(false);
   const navigate = useNavigate();
-  const [products, setProducts] = useProducts([]);
+  const [products] = useProducts([]);
   const popularProducts = products.slice(0, 6);
+
+  // Spinner showing
+  if (isLoading) {
+    return (
+      <div className="d-flex justify-content-center align-items-center m-5 p-5">
+        <div className="spinner-border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div>
       <h1 className="primary-color pb-lg-5 pb-sm-3">Popular Items</h1>

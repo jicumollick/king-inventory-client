@@ -4,11 +4,31 @@ import useProducts from "../../hooks/useProducts";
 import auth from "../firebase.init";
 
 const MyItems = () => {
-  const [user, loading, error] = useAuthState(auth);
+  const [user] = useAuthState(auth);
   const [products, setProducts] = useProducts([]);
 
   const myProducts = products.filter((product) => product.email === user.email);
 
+  // handle product delete
+  const handleProductDelete = (id) => {
+    const procced = window.confirm("Are you sure to delete ?");
+    if (procced) {
+      console.log(id);
+      const url = `https://evening-badlands-51648.herokuapp.com/products/${id}`;
+
+      fetch(url, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.deletedCount > 0) {
+            console.log("delete succesfully");
+            const remaining = products.filter((product) => product._id !== id);
+            setProducts(remaining);
+          }
+        });
+    }
+  };
   return (
     <div className="">
       <h1 className="py-5">You have {myProducts.length} items</h1>
@@ -24,6 +44,12 @@ const MyItems = () => {
               <div class="card-body">
                 <h5 class="card-title">{product.name}</h5>
                 <p class="card-text">{product.description}</p>
+                <button
+                  className="btn btn-primary"
+                  onClick={() => handleProductDelete(product._id)}
+                >
+                  Delete
+                </button>
               </div>
             </div>
           ))}

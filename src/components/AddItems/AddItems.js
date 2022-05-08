@@ -3,7 +3,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../firebase.init";
 
 const AddItems = () => {
-  const [user, loading, error] = useAuthState(auth);
+  const [user] = useAuthState(auth);
   // console.log(user);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,7 +25,7 @@ const AddItems = () => {
       supplierName,
     };
 
-    fetch("http://localhost:5000/products", {
+    fetch("https://evening-badlands-51648.herokuapp.com/products", {
       method: "POST",
       headers: {
         "content-type": "application/json",

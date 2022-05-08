@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import useProducts from "../../hooks/useProducts";
 import "./ManageItems.css";
@@ -15,7 +15,7 @@ const ManageItems = () => {
     const procced = window.confirm("Are you sure to delete ?");
     if (procced) {
       console.log(id);
-      const url = `http://localhost:5000/products/${id}`;
+      const url = `https://evening-badlands-51648.herokuapp.com/products/${id}`;
 
       fetch(url, {
         method: "DELETE",

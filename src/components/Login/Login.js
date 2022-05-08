@@ -1,30 +1,39 @@
 import React, { useState } from "react";
+import { sendEmailVerification, sendPasswordResetEmail } from "firebase/auth";
 import "./Login.css";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "../firebase.init";
-import { useNavigate } from "react-router-dom";
+
 import SocialLogin from "./SocialLogin/SocialLogin";
 
+import { toast, ToastContainer } from "react-toastify";
+import axios from "axios";
+
 const Login = () => {
-  const navigate = useNavigate();
+  let errorMessage;
+
   // getting user
   const [registered, setRegistered] = useState(false);
   // for sign up
-  const [
-    createUserWithEmailAndPassword,
-    signUpUser,
-    signUpLoading,
-    signUpError,
-  ] = useCreateUserWithEmailAndPassword(auth);
-
+  const [createUserWithEmailAndPassword, signUpUser, signUpError] =
+    useCreateUserWithEmailAndPassword(auth);
   // for login
-  const [signInWithEmailAndPassword, signInUser, signInLoading, signInError] =
+  const [signInWithEmailAndPassword, loading2, error2] =
     useSignInWithEmailAndPassword(auth);
 
+  if (loading2) {
+    return (
+      <div className="d-flex justify-content-center align-items-center m-5 p-5">
+        <div className="spinner-border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    );
+  }
   // Login & Registration form handler
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+    // e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
     // console.log(email, password);
@@ -37,9 +46,10 @@ const Login = () => {
         alert("pasword didn't match ");
         return;
       }
-      createUserWithEmailAndPassword(email, password);
+      await createUserWithEmailAndPassword(email, password);
       if (signUpError) {
         alert("Error in sign Up");
+        return;
       } else {
         alert("Registration Successful");
       }
@@ -48,20 +58,57 @@ const Login = () => {
     } else {
       //login
 
-      signInWithEmailAndPassword(email, password);
+      await signInWithEmailAndPassword(email, password);
 
-      if (signInError) {
-        alert("Login Error Occured");
-      } else {
-        alert("Login successful");
-        navigate("/");
-      }
-      console.log("login form");
+      const { data } = await axios.post(
+        "https://evening-badlands-51648.herokuapp.com/login",
+        {
+          email,
+        }
+      );
+
+      localStorage.setItem("accessToken", data.accessToken);
     }
+
+    if (!error2) {
+      toast("Email or Password dont matched, try again");
+      errorMessage = (
+        <p className="text-danger">Error: email or password didn't match</p>
+      );
+    } else {
+      toast("Login Successfull");
+
+      // navigate("/");
+    }
+
     e.target.reset();
   };
+
+  // password reset
+
+  const handlePasswordReset = () => {
+    const email = window.prompt("what is your email? ");
+
+    sendPasswordResetEmail(auth, email).then(() => {
+      toast("Email sended, thanks");
+      console.log("email sent for reset password");
+    });
+  };
+
+  // email verification
+
+  const verifyEmail = () => {
+    sendEmailVerification(auth.currentUser).then(() => {
+      console.log("email verification sended");
+    });
+  };
+
+  if (signUpUser) {
+    verifyEmail();
+  }
   return (
     <div>
+      <ToastContainer autoClose={8000} />
       <div id="login ">
         <h3 className="text-center primary-color pt-5">
           {" "}
@@ -128,6 +175,7 @@ const Login = () => {
                   ) : (
                     ""
                   )}
+                  <div>{errorMessage}</div>
 
                   <br />
                   <input
@@ -141,7 +189,10 @@ const Login = () => {
                   <label htmlFor="remember-me" className="">
                     <span> {registered ? "" : "Forgotten password ?"}</span>
                     <span>
-                      <button className="btn btn-link">
+                      <button
+                        className="btn btn-link"
+                        onClick={handlePasswordReset}
+                      >
                         {" "}
                         {registered ? "" : "Reset Password"}
                       </button>
@@ -155,13 +206,29 @@ const Login = () => {
                       ? "Already have an account ? "
                       : "New to king inventory ?"}
                   </span>
-                  <button
+
+                  {registered ? (
+                    <button
+                      className="btn btn-link"
+                      onClick={() => setRegistered(false)}
+                    >
+                      Login here
+                    </button>
+                  ) : (
+                    <button
+                      className="btn btn-link"
+                      onClick={() => setRegistered(true)}
+                    >
+                      Register here
+                    </button>
+                  )}
+                  {/* <button
                     className="btn btn-link"
                     onClick={() => setRegistered(!registered)}
                   >
                     {" "}
                     {registered ? "Login here" : "Register here"}
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>

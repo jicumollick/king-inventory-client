@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../firebase.init";
 const InventoryUpdate = () => {
+  const navigate = useNavigate();
   const [user, loading, error] = useAuthState(auth);
   const [product, setProduct] = useState({});
   const [delivered, setDelivered] = useState(false);
   const { id } = useParams();
 
   useEffect(() => {
-    const url = `http://localhost:5000/products/${id}`;
+    const url = `https://evening-badlands-51648.herokuapp.com/products/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setProduct(data));
@@ -43,7 +44,7 @@ const InventoryUpdate = () => {
       supplierName,
     };
 
-    const url = `http://localhost:5000/products/${id}`;
+    const url = `https://evening-badlands-51648.herokuapp.com/products/${id}`;
 
     fetch(url, {
       method: "PUT",
@@ -65,7 +66,7 @@ const InventoryUpdate = () => {
 
   return (
     <div>
-      <h2>Updating Product {product.name}</h2>
+      <h2 className="py-5">Updating Product {product.name}</h2>
 
       <div>
         <div className="w-50 mx-auto">
@@ -152,7 +153,7 @@ const InventoryUpdate = () => {
             <div className="form-group py-5">
               <label className="me-2" htmlFor="AddQuantity">
                 {" "}
-                Add More Quantity:
+                Restock The Item :
               </label>
               <input
                 type="number"
@@ -162,11 +163,19 @@ const InventoryUpdate = () => {
                 max="5000"
               />
               <button className="btn btn-primary ms-2" type="submit">
-                Add
+                Restock
               </button>
             </div>
           </form>
         </div>
+        <button
+          className="btn btn-info my-5 ms-5"
+          onClick={() => {
+            navigate("/manageItems");
+          }}
+        >
+          Manage Inventories
+        </button>
       </div>
     </div>
   );
