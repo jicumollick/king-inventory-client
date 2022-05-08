@@ -1,8 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useProducts from "../../../hooks/useProducts";
 import "./PopularItems.css";
 const PopularItems = () => {
+  const navigate = useNavigate();
   const [products, setProducts] = useProducts([]);
   const popularProducts = products.slice(0, 6);
   return (
@@ -46,6 +47,14 @@ const PopularItems = () => {
               );
             })}
           </div>
+          <button
+            className="btn btn-info my-5"
+            onClick={() => {
+              navigate("/manageItems");
+            }}
+          >
+            Manage Inventories
+          </button>
         </div>
       </div>
     </div>

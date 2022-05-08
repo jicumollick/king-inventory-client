@@ -63,7 +63,9 @@ const ManageItems = () => {
                     </p>
                     <p className="card-text">price: ${product.price}</p>
                     <p className="card-text">quantity: {product.quantity}</p>
-                    <p className="card-text">Supplier: {product.supplier} </p>
+                    <p className="card-text">
+                      Supplier: {product.supplierName}{" "}
+                    </p>
                     <button
                       className="btn btn-primary"
                       onClick={() => handleProductDelete(product._id)}
