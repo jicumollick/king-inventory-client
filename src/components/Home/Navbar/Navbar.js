@@ -33,28 +33,32 @@ const Navbar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <CustomLink
-                className="nav-link active"
-                aria-current="page"
-                to={"/manageItems"}
-              >
-                Manage Items
-              </CustomLink>
-            </li>
-            <li className="nav-item">
-              <CustomLink className="nav-link" to={"/addItems"}>
-                Add Item
-              </CustomLink>
-            </li>
+          {user ? (
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-item">
+                <CustomLink
+                  className="nav-link active"
+                  aria-current="page"
+                  to={"/manageItems"}
+                >
+                  Manage Items
+                </CustomLink>
+              </li>
+              <li className="nav-item">
+                <CustomLink className="nav-link" to={"/addItems"}>
+                  Add Item
+                </CustomLink>
+              </li>
+              <li className="nav-item">
+                <CustomLink className="nav-link " to={"/myItems"}>
+                  My Items
+                </CustomLink>
+              </li>{" "}
+            </ul>
+          ) : (
+            ""
+          )}
 
-            <li className="nav-item">
-              <CustomLink className="nav-link " to={"/myItems"}>
-                My Items
-              </CustomLink>
-            </li>
-          </ul>
           <ul className="d-flex navbar-nav">
             <li className="nav-item">
               <CustomLink className="nav-link" to={"/blogs"}>
@@ -66,6 +70,15 @@ const Navbar = () => {
                 About
               </CustomLink>
             </li>
+            {user ? (
+              <li className="nav-item">
+                <CustomLink className="nav-link" to={""}>
+                  {user.displayName}
+                </CustomLink>
+              </li>
+            ) : (
+              ""
+            )}
             {user ? (
               <li className="nav-item">
                 <button onClick={() => logout()}>Logout</button>

@@ -12,6 +12,7 @@ const SocialLogin = () => {
   let errorMessage = "";
   if (user) {
     navigate("/");
+    console.log(user);
   }
   if (loading) {
     // return <Loading></Loading>;

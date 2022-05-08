@@ -43,7 +43,7 @@ const AddItems = () => {
   };
   return (
     <div>
-      <h2>Add a product please</h2>
+      <h2 className="py-5">Add a product please</h2>
       <div className="w-50 mx-auto">
         <form onSubmit={(e) => handleSubmit(e)}>
           <div className="form-group">
